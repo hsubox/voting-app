@@ -10,6 +10,11 @@ var polls = require('./routes/polls');
 
 var app = express();
 
+// oauth setup
+var oauth2lib = require('oauth20-provider');
+var oauth2 = new oauth2lib({log: {level: 2}});
+app.use(oauth2.inject());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
