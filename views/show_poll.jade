@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1 Voting App
+
+  h2= poll.question
+
+  ul
+    li
+      | Add option:
+      form(action="/polls/" + poll.id + "/choice/create", method="post", style="display: inline")
+        input(type="text", name="option")
+        input(type="submit")
+
+    each choice in poll.Choices
+      li
+        = choice.option
+        | &nbsp;
+        | (
+        a(href="/polls/" + poll.id + "/choice/" + choice.id + "/destroy") Destroy
+        | )
+        form(action="/polls/" + poll.id + "/choice/" + choice.id + "/vote", method="post", style="display: inline")
+          input(type="Submit" value="Vote " + choice.Votes.length)
