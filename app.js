@@ -4,16 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var passport = require('passport');
+var flash = require('express-flash');
 
 var routes = require('./routes/index');
 var polls = require('./routes/polls');
 
 var app = express();
-
-// oauth setup
-var oauth2lib = require('oauth20-provider');
-var oauth2 = new oauth2lib({log: {level: 2}});
-app.use(oauth2.inject());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,10 +23,24 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// required for passport
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/polls', polls);
+
+var auth = require('./routes/auth');
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -60,6 +72,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
