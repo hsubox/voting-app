@@ -1,6 +1,6 @@
+require('dotenv').config();
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
-var keys = require('../keys.js');
 
 var express = require('express');
 var router = express.Router();
@@ -15,8 +15,8 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new TwitterStrategy({
-    consumerKey: keys.TWITTER_CONSUMER_KEY,
-    consumerSecret: keys.TWITTER_CONSUMER_SECRET,
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
     callbackURL: "http://localhost:3000/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {

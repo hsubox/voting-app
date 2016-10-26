@@ -27,7 +27,6 @@
     "express-session": "^1.14.1",
     "jade": "^1.11.0",
     "morgan": "^1.7.0",
-    "oauth20-provider": "^0.6.0",
     "passport": "^0.3.2",
     "passport-twitter": "^1.0.4",
     "sequelize": "^3.24.5",
