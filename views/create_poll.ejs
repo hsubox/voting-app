@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <% include ./partials/navbar %>
+  <body>
+    <div class="container">
+      <div class="container">
+        <h1><%= title %></h1>
+      </div>
+      <div class="container">
+        <form action="/polls/create", method="post">
+          <input type="text" name="question">
+          <input type="submit">
+        </form>
+      </div>
+    </div>
+  </body>
+  <% include ./partials/footer %>
+</html>

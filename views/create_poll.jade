@@ -1,9 +1,0 @@
-extends layout
-
-block content
-  h1= title
-
-  h2 Creating a new poll
-  form(action="/polls/create", method="post")
-    input(type="text", name="question")
-    input(type="submit")

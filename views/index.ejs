@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <% include ./partials/navbar %>
+  <body>
+    <div class="container">
+      <div class="container">
+        <h1><%= title %></h1>
+      </div>
+      <div class="container">
+        <p>Select a poll to see the results and vote, or sign-in to make a new poll.</p>
+      </div>
+      <div class="container">
+        <ul class="list-group">
+          <% polls.forEach(function(poll) { %>
+            <li class="list-group-item">
+              <a href="/polls/<%= poll.id %>/show"><%= poll.question %></a> <a href="/polls/<%= poll.id %>/destroy">Destroy</a>
+            </li>
+          <% }); %>
+          <li>
+            <a href="/polls/create">Add New Poll</a>
+          </li>
+        </ul>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <% include ./partials/footer %>
+</html>
