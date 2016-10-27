@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -26,7 +27,7 @@ app.use(cookieParser());
 
 // required for passport
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.PASSPORT_SECRET,
   resave: false,
   saveUninitialized: true
 }));
