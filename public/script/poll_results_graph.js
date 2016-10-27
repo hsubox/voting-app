@@ -29,5 +29,6 @@ d3.json(window.location.pathname.replace("show","json"), function(error, full_da
     g.append("text")
       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
       .attr("dx", "-1em")
-      .text(function(d) { return d.data.option + ": " + d.data.Votes.length; });
+      // display if there is > 0 votes
+      .text(function(d) { return (d.data.Votes.length == 0 ? "" : (d.data.option + ": " + d.data.Votes.length)); });
 });
