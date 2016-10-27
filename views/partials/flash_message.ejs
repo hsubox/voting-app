@@ -1,0 +1,17 @@
+<% if (!flash_message.isEmptyObject) { %>
+  <% if (flash_message.info) { %>
+    <div class="alert alert-info" role="alert">
+      <%= flash_message.info %>
+    </div>
+  <% } %>
+  <% if (flash_message.warning) { %>
+    <div class="alert alert-warning" role="alert">
+      <%= flash_message.warning %>
+    </div>
+  <% } %>
+  <% if (flash_message.error) { %>
+    <div class="alert alert-danger" role="alert">
+      <strong>Error: </strong>
+      <%= flash_message.error %></div>
+  <% } %>
+<% } %>

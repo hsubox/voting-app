@@ -6,24 +6,28 @@
   <% include ./partials/navbar %>
   <body>
     <div class="container">
+      <% include ./partials/flash_message %>
       <div class="container">
         <h1><%= poll.question %></h1>
       </div>
       <div class="container">
         <div class="col-sm-4">
-        <ul>
-          <% poll.Choices.forEach(function(choice) { %>
-            <li>
-              <%= choice.option %>
-              <form action="/polls/<%= poll.id %>/choice/<%= choice.id %>/vote" method="post" class="form-inline">
-                <button class="btn btn-default" type="submit">
-                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                  <%= choice.Votes.length %>
-                </button>
-              </form>
-            </li>
-          <% }); %>
-        </ul>
+          <ul>
+            <% poll.Choices.forEach(function(choice) { %>
+              <li>
+                <%= choice.option %>
+                <form action="/polls/<%= poll.id %>/choice/<%= choice.id %>/vote" method="post" class="form-inline">
+                  <button class="btn btn-default" type="submit">
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    <%= choice.Votes.length %>
+                  </button>
+                </form>
+              </li>
+            <% }); %>
+          </ul>
+          <% if (user) { %>
+            <a href="edit" class="btn btn-warning">Edit</a>
+          <% } %>
         </div>
         <div id="graph" class="col-sm-8">
         </div>

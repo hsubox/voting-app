@@ -6,11 +6,16 @@
   <% include ./partials/navbar %>
   <body>
     <div class="container">
+      <% include ./partials/flash_message %>
       <div class="container">
         <h1><%= title %></h1>
       </div>
       <div class="container">
-        <p class="text-info">Select a poll to see the results and vote, or sign-in to make a new poll.</p>
+        <% if (user) { %>
+          <p class="text-info">Select a poll to see the results and vote. Since you are logged in, you can also edit polls.</p>
+        <% } else { %>
+          <p class="text-info">Select a poll to see the results and vote, or sign-in to make a new poll.</p>
+        <% } %>
       </div>
       <div class="container">
         <ul class="list-group">
@@ -20,7 +25,10 @@
           <% polls.forEach(function(poll) { %>
             <li class="list-group-item">
               <a href="/polls/<%= poll.id %>/show"><%= poll.question %></a>
-              <a href="/polls/<%= poll.id %>/destroy" class="btn btn-danger">Destroy</a>
+              <% if (user) { %>
+                <a href="/polls/<%= poll.id %>/edit" class="btn btn-warning">Edit</a>
+                <a href="/polls/<%= poll.id %>/destroy" class="btn btn-danger">Destroy</a>
+              <% } %>
             </li>
           <% }); %>
         </ul>

@@ -40,6 +40,13 @@ router.get('/twitter', passport.authenticate('twitter'));
 
 router.get('/twitter/callback',
   passport.authenticate('twitter', { successRedirect: '/',
-                                     failureRedirect: '/' }));
+                                     failureRedirect: '/auth/twitter',
+                                     failureFlash: true,
+                                     successFlash: 'Welcome!' }));
+
+router.get('/signout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
 
 module.exports = router;
