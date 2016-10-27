@@ -19,9 +19,11 @@
       </div>
       <div class="container">
         <ul class="list-group">
-          <li class="list-group-item">
-            <a href="/polls/create">Add New Poll</a>
-          </li>
+          <% if (user) { %>
+            <li class="list-group-item">
+              <a href="/polls/create">Add New Poll</a>
+            </li>
+          <% } %>
           <% polls.forEach(function(poll) { %>
             <li class="list-group-item">
               <a href="/polls/<%= poll.id %>/show"><%= poll.question %></a>

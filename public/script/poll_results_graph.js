@@ -4,8 +4,7 @@ d3.json(window.location.pathname.replace("show","json"), function(error, full_da
   var width = 400;
   var height = 400;
   var radius = Math.min(width, height) / 2 - 30;
-  var color = d3.scaleOrdinal()
-    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+  var color = d3.scaleOrdinal(d3.schemeCategory20);
   var arc = d3.arc()
       .outerRadius(radius - 10)
       .innerRadius(radius - 70);
