@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <% include ./partials/navbar %>
+  <body>
+    <div class="container">
+      <div class="container">
+        <h1><%= poll.question %></h1>
+      </div>
+      <div class="container">
+        <ul>
+          <% poll.Choices.forEach(function(choice) { %>
+            <li>
+              <%= choice.option %> (Votes: <%= choice.Votes.length %>)
+              <a href="/polls/<%= poll.id %>/choice/<%=  choice.id %>/destroy" class="btn btn-danger">Destroy</a>
+            </li>
+          <% }); %>
+          <li>
+            Add option:
+            <form action="/polls/<%= poll.id %>/choice/create" method="post" class="form-inline">
+              <input type="text" name="option" class="form-control" />
+              <input type="Submit" class="btn btn-default"/>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <% include ./partials/footer %>
+</html>

@@ -17,9 +17,28 @@ router.get('/create', function (req, res) {
 router.post('/create', function (req, res) {
     models.Poll.create({
       question: req.body.question
-    }).then(function() {
-      res.redirect('/');
+    }).then(function(poll) {
+      res.redirect('/polls/' + poll.id + '/edit');
     });
+});
+
+router.get('/:poll_id/edit', function(req, res) {
+  models.Poll.find({
+    where: {
+      id: req.params.poll_id
+    },
+    include: [{
+      model: models.Choice,
+      include: [{
+        model: models.Vote,
+        //attributes: [[sequelize.fn('COUNT', sequelize.col('ChoiceId')), 'no_votes']]
+      }]
+    }]
+  }).then(function(poll) {
+    res.render('edit_poll', {
+      poll: poll
+    });
+  });
 });
 
 router.get('/:poll_id/show', function(req, res) {
@@ -41,6 +60,25 @@ router.get('/:poll_id/show', function(req, res) {
   });
 });
 
+router.get('/:poll_id/json', function(req, res) {
+  models.Poll.find({
+    where: {
+      id: req.params.poll_id
+    },
+    include: [{
+      model: models.Choice,
+      include: [{
+        model: models.Vote,
+        //attributes: [[sequelize.fn('COUNT', sequelize.col('ChoiceId')), 'no_votes']]
+      }]
+    }]
+  }).then(function(poll) {
+    res.send({
+      poll: poll
+    });
+  });
+});
+
 router.get('/:poll_id/destroy', function(req, res) {
     models.Poll.destroy({
       where: {
@@ -56,7 +94,7 @@ router.post('/:poll_id/choice/create', function(req, res) {
     option: req.body.option,
     PollId: req.params.poll_id
   }).then(function() {
-    res.redirect('/polls/' + req.params.poll_id + '/show');
+    res.redirect('/polls/' + req.params.poll_id + '/edit');
   });
 });
 

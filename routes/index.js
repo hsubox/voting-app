@@ -13,8 +13,4 @@ router.get('/', function(req, res) {
   });
 });
 
-router.get('/css/:css', function (req, res) {
-    res.sendFile(process.cwd() + '/css/' + req.params.css);
-});
-
 module.exports = router;

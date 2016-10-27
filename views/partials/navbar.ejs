@@ -5,8 +5,14 @@
         <a class="navbar-brand" href="/">Voting App</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" class="active">Home</a></li>
-        <li><button type="button" class="btn btn-primary navbar-btn">Sign in with Twitter</button></li>
+        <li><a href="/" class="active">Home</a></li>
+        <li>
+          <form action="/auth/twitter" method="get" style="display: inline">
+            <button class="btn btn-primary navbar-btn" type="submit">
+              Sign in with Twitter
+            </button>
+          </form>
+        </li>
       </ul>
     </div>
   </nav>

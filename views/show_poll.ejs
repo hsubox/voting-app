@@ -10,25 +10,27 @@
         <h1><%= poll.question %></h1>
       </div>
       <div class="container">
+        <div class="col-sm-4">
         <ul>
           <% poll.Choices.forEach(function(choice) { %>
             <li>
-              <%= choice.option %></a> <a href="/polls/<%= poll.id %>/choice/<%=  choice.id %>/destroy">Destroy</a>
-              <form action="/polls/<%= poll.id %>/choice/<%= choice.id %>/vote" method="post" style="display: inline">
-                <input type="Submit" value="Vote <%=choice.Votes.length %>"/>
+              <%= choice.option %>
+              <form action="/polls/<%= poll.id %>/choice/<%= choice.id %>/vote" method="post" class="form-inline">
+                <button class="btn btn-default" type="submit">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                  <%= choice.Votes.length %>
+                </button>
               </form>
             </li>
           <% }); %>
-          <li>
-            Add option:
-            <form action="/polls/<%= poll.id %>/choice/create", method="post", style="display: inline">
-              <input type="text" name="option">
-              <input type="Submit"/>
-            </form>
-          </li>
         </ul>
+        </div>
+        <div id="graph" class="col-sm-8">
+        </div>
       </div>
     </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.8/d3.js"></script>
+    <script type="text/javascript" src="/script/poll_results_graph.js"></script>
   </body>
   <% include ./partials/footer %>
 </html>
