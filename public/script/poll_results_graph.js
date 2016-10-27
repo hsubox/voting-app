@@ -1,4 +1,4 @@
-d3.json("/polls/11/json", function(error, full_data) {
+d3.json(window.location.pathname.replace("show","json"), function(error, full_data) {
   if (error) return console.error("error loading graph:" + error);
   var data = full_data.poll.Choices;
   var width = 400;
