@@ -17,7 +17,7 @@
     "username": "root",
     "password": null,
     "database": "database_production",
-    "host": "https://lit-journey-32298.herokuapp.com/",
+    "host": "127.0.0.1",
     "dialect": "sqlite"
   }
 }
