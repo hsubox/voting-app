@@ -11,7 +11,7 @@
   "bugs": "",
   "keywords": [],
   "scripts": {
-    "start": "node server.js"
+    "start": "node bin/www"
   },
   "author": "jennhsu",
   "license": "MIT",
