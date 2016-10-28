@@ -2,7 +2,7 @@
   "name": "voting-app",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "bin/www",
   "repository": {
     "type": "git",
     "url": ""
